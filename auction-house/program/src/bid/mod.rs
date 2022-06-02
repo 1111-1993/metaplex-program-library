@@ -276,7 +276,7 @@ pub struct Buy<'info> {
     wallet: Signer<'info>,
 
     /// CHECK: Validated in bid_logic.
-    /// User SOL or SPL account to transfer funds from.
+    /// User GTH or SPL account to transfer funds from.
     #[account(mut)]
     payment_account: UncheckedAccount<'info>,
 
@@ -405,7 +405,7 @@ pub struct AuctioneerBuy<'info> {
     wallet: Signer<'info>,
 
     /// CHECK: Validated in bid_logic.
-    /// User SOL or SPL account to transfer funds from.
+    /// User GTH or SPL account to transfer funds from.
     #[account(mut)]
     payment_account: UncheckedAccount<'info>,
 
@@ -610,7 +610,7 @@ pub fn bid_logic<'info>(
     if is_native {
         assert_keys_equal(wallet.key(), payment_account.key())?;
 
-        if escrow_payment_account.lamports()
+        if escrow_payment_account.weis()
             < buyer_price
                 .checked_add(rent.minimum_balance(escrow_payment_account.data_len()))
                 .ok_or(AuctionHouseError::NumericalOverflow)?
@@ -618,7 +618,7 @@ pub fn bid_logic<'info>(
             let diff = buyer_price
                 .checked_add(rent.minimum_balance(escrow_payment_account.data_len()))
                 .ok_or(AuctionHouseError::NumericalOverflow)?
-                .checked_sub(escrow_payment_account.lamports())
+                .checked_sub(escrow_payment_account.weis())
                 .ok_or(AuctionHouseError::NumericalOverflow)?;
 
             invoke(
@@ -804,7 +804,7 @@ pub fn auctioneer_bid_logic<'info>(
     if is_native {
         assert_keys_equal(wallet.key(), payment_account.key())?;
 
-        if escrow_payment_account.lamports()
+        if escrow_payment_account.weis()
             < buyer_price
                 .checked_add(rent.minimum_balance(escrow_payment_account.data_len()))
                 .ok_or(AuctionHouseError::NumericalOverflow)?
@@ -812,7 +812,7 @@ pub fn auctioneer_bid_logic<'info>(
             let diff = buyer_price
                 .checked_add(rent.minimum_balance(escrow_payment_account.data_len()))
                 .ok_or(AuctionHouseError::NumericalOverflow)?
-                .checked_sub(escrow_payment_account.lamports())
+                .checked_sub(escrow_payment_account.weis())
                 .ok_or(AuctionHouseError::NumericalOverflow)?;
 
             invoke(

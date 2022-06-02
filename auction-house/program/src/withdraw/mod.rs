@@ -11,7 +11,7 @@ pub struct Withdraw<'info> {
     pub wallet: UncheckedAccount<'info>,
 
     /// CHECK: Validated in withdraw_logic.
-    /// SPL token account or native SOL account to transfer funds to. If the account is a native SOL account, this is the same as the wallet address.
+    /// SPL token account or native GTH account to transfer funds to. If the account is a native GTH account, this is the same as the wallet address.
     #[account(mut)]
     pub receipt_account: UncheckedAccount<'info>,
 
@@ -111,7 +111,7 @@ pub struct AuctioneerWithdraw<'info> {
     pub wallet: UncheckedAccount<'info>,
 
     /// CHECK: Validated in withdraw_logic.
-    /// SPL token account or native SOL account to transfer funds to. If the account is a native SOL account, this is the same as the wallet address.
+    /// SPL token account or native GTH account to transfer funds to. If the account is a native GTH account, this is the same as the wallet address.
     #[account(mut)]
     pub receipt_account: UncheckedAccount<'info>,
 

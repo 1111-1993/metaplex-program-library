@@ -987,11 +987,11 @@ pub fn process_revoke_use_authority(
             ],
         )?;
     }
-    let lamports = use_authority_record_info.lamports();
-    **use_authority_record_info.try_borrow_mut_lamports()? = 0;
-    **owner_info.try_borrow_mut_lamports()? = owner_info
-        .lamports()
-        .checked_add(lamports)
+    let weis = use_authority_record_info.weis();
+    **use_authority_record_info.try_borrow_mut_weis()? = 0;
+    **owner_info.try_borrow_mut_weis()? = owner_info
+        .weis()
+        .checked_add(weis)
         .ok_or(MetadataError::NumericalOverflowError)?;
     sol_memset(data, 0, USE_AUTHORITY_RECORD_SIZE);
     Ok(())
@@ -1194,11 +1194,11 @@ pub fn process_revoke_collection_authority(
         mint_info.key,
         Some(collection_authority_record),
     )?;
-    let lamports = collection_authority_record.lamports();
-    **collection_authority_record.try_borrow_mut_lamports()? = 0;
-    **revoke_authority.try_borrow_mut_lamports()? = revoke_authority
-        .lamports()
-        .checked_add(lamports)
+    let weis = collection_authority_record.weis();
+    **collection_authority_record.try_borrow_mut_weis()? = 0;
+    **revoke_authority.try_borrow_mut_weis()? = revoke_authority
+        .weis()
+        .checked_add(weis)
         .ok_or(MetadataError::NumericalOverflowError)?;
     sol_memset(
         *collection_authority_record.try_borrow_mut_data()?,

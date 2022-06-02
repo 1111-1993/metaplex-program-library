@@ -279,13 +279,13 @@ pub fn create_or_allocate_account_raw<'a>(
     new_acct_seeds: &[&[u8]],
 ) -> Result<()> {
     let rent = &Rent::from_account_info(rent_sysvar_info)?;
-    let required_lamports = rent
+    let required_weis = rent
         .minimum_balance(size)
         .max(1)
-        .saturating_sub(new_account_info.lamports());
+        .saturating_sub(new_account_info.weis());
 
-    if required_lamports > 0 {
-        msg!("Transfer {} lamports to the new account", required_lamports);
+    if required_weis > 0 {
+        msg!("Transfer {} weis to the new account", required_weis);
         let seeds: &[&[&[u8]]];
         let as_arr = [signer_seeds];
 
@@ -295,7 +295,7 @@ pub fn create_or_allocate_account_raw<'a>(
             seeds = &[];
         }
         invoke_signed(
-            &system_instruction::transfer(&payer_info.key, new_account_info.key, required_lamports),
+            &system_instruction::transfer(&payer_info.key, new_account_info.key, required_weis),
             &[
                 payer_info.clone(),
                 new_account_info.clone(),
@@ -357,7 +357,7 @@ mod tests {
     #[test]
     fn get_mint_details_smoke_test() {
         let key = Pubkey::new_unique();
-        let mut lamports = 0;
+        let mut weis = 0;
         let mut data: Vec<u8> = Vec::with_capacity(Mint::LEN);
         data.resize(Mint::LEN, Default::default());
         let mint = Mint {
@@ -375,7 +375,7 @@ mod tests {
             &key,
             false,
             false,
-            &mut lamports,
+            &mut weis,
             &mut data,
             &owner,
             false,

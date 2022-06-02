@@ -217,7 +217,7 @@ pub enum NFTPacksInstruction {
 
     /// DeletePack
     ///
-    /// Transfer all the SOL from pack set account to refunder account and thus remove it.
+    /// Transfer all the GTH from pack set account to refunder account and thus remove it.
     ///
     /// Accounts:
     /// - write            pack_set
@@ -227,7 +227,7 @@ pub enum NFTPacksInstruction {
 
     /// DeletePackCard
     ///
-    /// Transfer all the SOL from pack card account to refunder account and thus remove it.
+    /// Transfer all the GTH from pack card account to refunder account and thus remove it.
     /// Also transfer master token to new owner.
     ///
     /// Accounts:
@@ -244,7 +244,7 @@ pub enum NFTPacksInstruction {
 
     /// DeletePackVoucher
     ///
-    /// Transfer all the SOL from pack voucher account to refunder account and thus remove it.
+    /// Transfer all the GTH from pack voucher account to refunder account and thus remove it.
     ///
     /// Accounts:
     /// - write            pack_set
@@ -302,7 +302,7 @@ pub enum NFTPacksInstruction {
 
     /// Delete PackConfig account
     ///
-    /// Transfer all the SOL from pack card account to refunder account and thus remove it.
+    /// Transfer all the GTH from pack card account to refunder account and thus remove it.
     ///
     /// Accounts:
     /// - read                pack_set

@@ -110,7 +110,7 @@ export function createUninitializedMint(
   const instruction = SystemProgram.createAccount({
     fromPubkey: payer,
     newAccountPubkey: mintAccount.publicKey,
-    lamports: amount,
+    weis: amount,
     space: MintLayout.span,
     programId: TOKEN_PROGRAM_ID,
   });
@@ -156,7 +156,7 @@ export function createUninitializedTokenAccount(
   const instruction = SystemProgram.createAccount({
     fromPubkey: payer,
     newAccountPubkey: tokenAccountPair.publicKey,
-    lamports: amount,
+    weis: amount,
     space: TokenAccountLayout.span,
     programId: TOKEN_PROGRAM_ID,
   });

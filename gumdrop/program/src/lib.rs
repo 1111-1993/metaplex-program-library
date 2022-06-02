@@ -102,9 +102,9 @@ fn get_or_create_claim_count<'a>(
 
     verify_claim_bump(claim_count, CLAIM_COUNT, claim_bump, index, distributor)?;
 
-    let create_claim_state = claim_count.lamports() == 0; // TODO: support initial lamports?
+    let create_claim_state = claim_count.weis() == 0; // TODO: support initial weis?
     if create_claim_state {
-        let lamports = rent.minimum_balance(space);
+        let weis = rent.minimum_balance(space);
         let claim_count_seeds = [
             CLAIM_COUNT.as_ref(),
             &index.to_le_bytes(),
@@ -116,7 +116,7 @@ fn get_or_create_claim_count<'a>(
             &system_instruction::create_account(
                 &payer.key(),
                 claim_count.key,
-                lamports,
+                weis,
                 space as u64,
                 &ID),
             &[
@@ -271,7 +271,7 @@ pub mod gumdrop {
             &system_instruction::transfer(
                 ctx.accounts.distributor_wallet.key,
                 ctx.accounts.receiver.key,
-                ctx.accounts.distributor_wallet.lamports(),
+                ctx.accounts.distributor_wallet.weis(),
             ),
             &[
                 ctx.accounts.distributor_wallet.clone(),
@@ -722,8 +722,8 @@ fn issue_mint_nft<'info>(
     claim_remaining_accounts: &[AccountInfo<'info>],
     wallet_bump: u8,
 ) -> Result<()> {
-    // Transfer the required SOL from the payer
-    let required_lamports;
+    // Transfer the required GTH from the payer
+    let required_weis;
     let remaining_accounts;
     {
         let rent = &Rent::get()?;
@@ -735,7 +735,7 @@ fn issue_mint_nft<'info>(
                 + rent.minimum_balance(mpl_token_metadata::state::MAX_MASTER_EDITION_LEN);
 
         if candy_machine.token_mint.is_some() {
-            required_lamports = required_rent;
+            required_weis = required_rent;
 
             // checked by candy machine
             let token_account_info = &claim_remaining_accounts[0];
@@ -745,19 +745,19 @@ fn issue_mint_nft<'info>(
                 transfer_authority_info.clone(),
             ];
         } else {
-            required_lamports = candy_machine.data.price + required_rent;
+            required_weis = candy_machine.data.price + required_rent;
             remaining_accounts = vec![];
         }
     }
     msg!(
-        "Transferring {} lamports to distributor wallet for candy machine mint",
-        required_lamports,
+        "Transferring {} weis to distributor wallet for candy machine mint",
+        required_weis,
     );
     invoke(
         &system_instruction::transfer(
             payer.key,
             distributor_wallet.key,
-            required_lamports,
+            required_weis,
         ),
         &[
             payer.to_account_info().clone(),

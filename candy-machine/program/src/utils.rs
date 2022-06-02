@@ -232,11 +232,11 @@ pub fn punish_bots<'a>(
     fee: u64,
 ) -> Result<()> {
     msg!(
-        "{}, Candy Machine Botting is taxed at {:?} lamports",
+        "{}, Candy Machine Botting is taxed at {:?} weis",
         err.to_string(),
         fee
     );
-    let final_fee = fee.min(bot_account.lamports());
+    let final_fee = fee.min(bot_account.weis());
     invoke(
         &system_instruction::transfer(bot_account.key, payment_account.key, final_fee),
         &[bot_account, payment_account, system_program],

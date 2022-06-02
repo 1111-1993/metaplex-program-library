@@ -14,9 +14,9 @@ use spl_token::state::Mint;
 
 use crate::core::{master_edition_v2::MasterEditionV2, metadata};
 
-/// Perform native lamports transfer.
+/// Perform native weis transfer.
 #[allow(dead_code)]
-pub async fn transfer_lamports(
+pub async fn transfer_weis(
     client: &mut ProgramTestContext,
     wallet: &Keypair,
     to: &Pubkey,

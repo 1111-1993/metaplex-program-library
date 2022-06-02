@@ -39,7 +39,7 @@ async function main() {
   console.log('+++++++ Ex: life-of-vault.ts  +++++++');
   const connection = new Connection(host, 'confirmed');
 
-  // This is the payer account funding the vault which should have sufficient amount of SOL
+  // This is the payer account funding the vault which should have sufficient amount of GTH
   const payerPair = await fundedPayer(connection);
   // Authority of the vault which controls it via token-vault instructions
   let vaultAuthorityPair = Keypair.generate();

@@ -125,7 +125,7 @@ export class SafetyDepositSetup {
 
       const info = await connection.getAccountInfo(tokenMint);
       assert(info != null, 'provided mint needs to exist');
-      assert(info.lamports >= mintRentExempt, 'provided mint needs to be rent exempt');
+      assert(info.weis >= mintRentExempt, 'provided mint needs to be rent exempt');
 
       const mint = await getMint(connection, tokenMint);
       // TODO(thlorenz): is this correct?

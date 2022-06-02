@@ -2,7 +2,7 @@ use anchor_lang::prelude::*;
 
 use crate::{cmp_pubkeys, CandyError, CandyMachine};
 
-/// Withdraw SOL from candy machine account.
+/// Withdraw GTH from candy machine account.
 #[derive(Accounts)]
 pub struct WithdrawFunds<'info> {
     #[account(mut, has_one = authority)]
@@ -16,12 +16,12 @@ pub struct WithdrawFunds<'info> {
 pub fn handle_withdraw_funds<'info>(ctx: Context<WithdrawFunds<'info>>) -> Result<()> {
     let authority = &ctx.accounts.authority;
     let pay = &ctx.accounts.candy_machine.to_account_info();
-    let snapshot: u64 = pay.lamports();
+    let snapshot: u64 = pay.weis();
 
-    **pay.lamports.borrow_mut() = 0;
+    **pay.weis.borrow_mut() = 0;
 
-    **authority.lamports.borrow_mut() = authority
-        .lamports()
+    **authority.weis.borrow_mut() = authority
+        .weis()
         .checked_add(snapshot)
         .ok_or(CandyError::NumericalOverflowError)?;
 
@@ -34,10 +34,10 @@ pub fn handle_withdraw_funds<'info>(ctx: Context<WithdrawFunds<'info>>) -> Resul
         ) {
             return err!(CandyError::MismatchedCollectionPDA);
         }
-        let snapshot: u64 = pay.lamports();
-        **pay.lamports.borrow_mut() = 0;
-        **authority.lamports.borrow_mut() = authority
-            .lamports()
+        let snapshot: u64 = pay.weis();
+        **pay.weis.borrow_mut() = 0;
+        **authority.weis.borrow_mut() = authority
+            .weis()
             .checked_add(snapshot)
             .ok_or(CandyError::NumericalOverflowError)?;
     }

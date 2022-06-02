@@ -175,7 +175,7 @@ createErrorFromCodeLookup.set(0x1777, () => new NumericalOverflowError());
 createErrorFromNameLookup.set('NumericalOverflow', () => new NumericalOverflowError());
 
 /**
- * ExpectedSolAccount: 'Expected a sol account but got an spl token account instead'
+ * ExpectedSolAccount: 'Expected a gth account but got an spl token account instead'
  *
  * @category Errors
  * @category generated
@@ -184,7 +184,7 @@ export class ExpectedSolAccountError extends Error {
   readonly code: number = 0x1778;
   readonly name: string = 'ExpectedSolAccount';
   constructor() {
-    super('Expected a sol account but got an spl token account instead');
+    super('Expected a gth account but got an spl token account instead');
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, ExpectedSolAccountError);
     }
@@ -195,7 +195,7 @@ createErrorFromCodeLookup.set(0x1778, () => new ExpectedSolAccountError());
 createErrorFromNameLookup.set('ExpectedSolAccount', () => new ExpectedSolAccountError());
 
 /**
- * CannotExchangeSOLForSol: 'Cannot exchange sol for sol'
+ * CannotExchangeSOLForSol: 'Cannot exchange gth for gth'
  *
  * @category Errors
  * @category generated
@@ -204,7 +204,7 @@ export class CannotExchangeSOLForSolError extends Error {
   readonly code: number = 0x1779;
   readonly name: string = 'CannotExchangeSOLForSol';
   constructor() {
-    super('Cannot exchange sol for sol');
+    super('Cannot exchange gth for gth');
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, CannotExchangeSOLForSolError);
     }
@@ -215,7 +215,7 @@ createErrorFromCodeLookup.set(0x1779, () => new CannotExchangeSOLForSolError());
 createErrorFromNameLookup.set('CannotExchangeSOLForSol', () => new CannotExchangeSOLForSolError());
 
 /**
- * SOLWalletMustSign: 'If paying with sol, sol wallet must be signer'
+ * SOLWalletMustSign: 'If paying with gth, gth wallet must be signer'
  *
  * @category Errors
  * @category generated
@@ -224,7 +224,7 @@ export class SOLWalletMustSignError extends Error {
   readonly code: number = 0x177a;
   readonly name: string = 'SOLWalletMustSign';
   constructor() {
-    super('If paying with sol, sol wallet must be signer');
+    super('If paying with gth, gth wallet must be signer');
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, SOLWalletMustSignError);
     }

@@ -46,7 +46,7 @@ pub fn delete_pack_voucher(program_id: &Pubkey, accounts: &[AccountInfo]) -> Pro
     // Decrement PackVoucher's counter in PackSet instance
     pack_set.pack_vouchers = pack_set.pack_vouchers.error_decrement()?;
 
-    // Transfer all SOL from PackVoucher and delete PackVoucher account
+    // Transfer all GTH from PackVoucher and delete PackVoucher account
     empty_account_balance(pack_voucher_account, refunder_account)?;
 
     // Update state

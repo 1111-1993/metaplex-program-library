@@ -815,7 +815,7 @@ mod withdraw {
             .unwrap()
             .unwrap();
 
-        assert_eq!(destination_acc.lamports(), 1000000);
+        assert_eq!(destination_acc.weis(), 1000000);
     }
 
     #[tokio::test]

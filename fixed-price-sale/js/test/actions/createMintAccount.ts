@@ -13,7 +13,7 @@ import {
 
 type CreateMintParams = {
   newAccountPubkey: PublicKey;
-  lamports: number;
+  weis: number;
   decimals?: number;
   owner?: PublicKey;
   freezeAuthority?: PublicKey;
@@ -27,7 +27,7 @@ export class CreateMint extends Transaction {
     const { feePayer } = options;
     assert(feePayer != null, 'need to provide non-null feePayer');
 
-    const { newAccountPubkey, lamports, decimals, owner, freezeAuthority } = params;
+    const { newAccountPubkey, weis, decimals, owner, freezeAuthority } = params;
 
     super(options);
 
@@ -35,7 +35,7 @@ export class CreateMint extends Transaction {
       SystemProgram.createAccount({
         fromPubkey: feePayer,
         newAccountPubkey,
-        lamports,
+        weis,
         space: MintLayout.span,
         programId: TOKEN_PROGRAM_ID,
       }),
@@ -62,7 +62,7 @@ export class CreateMint extends Transaction {
       { feePayer: payer },
       {
         newAccountPubkey: mint.publicKey,
-        lamports: mintRent,
+        weis: mintRent,
       },
     );
     return { mint, createMintTx };

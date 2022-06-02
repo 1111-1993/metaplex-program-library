@@ -153,15 +153,15 @@ pub fn create_or_allocate_account_raw<'a>(
     signer_seeds: &[&[u8]],
 ) -> ProgramResult {
     let rent = &Rent::from_account_info(rent_sysvar_info)?;
-    let required_lamports = rent
+    let required_weis = rent
         .minimum_balance(size)
         .max(1)
-        .saturating_sub(new_account_info.lamports());
+        .saturating_sub(new_account_info.weis());
 
-    if required_lamports > 0 {
-        msg!("Transfer {} lamports to the new account", required_lamports);
+    if required_weis > 0 {
+        msg!("Transfer {} weis to the new account", required_weis);
         invoke(
-            &system_instruction::transfer(payer_info.key, new_account_info.key, required_lamports),
+            &system_instruction::transfer(payer_info.key, new_account_info.key, required_weis),
             &[
                 payer_info.clone(),
                 new_account_info.clone(),
@@ -357,7 +357,7 @@ pub fn transfer_mint_authority<'a>(
 }
 
 pub fn assert_rent_exempt(rent: &Rent, account_info: &AccountInfo) -> ProgramResult {
-    if !rent.is_exempt(account_info.lamports(), account_info.data_len()) {
+    if !rent.is_exempt(account_info.weis(), account_info.data_len()) {
         Err(MetadataError::NotRentExempt.into())
     } else {
         Ok(())

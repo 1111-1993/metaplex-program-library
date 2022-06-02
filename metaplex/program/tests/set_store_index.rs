@@ -54,7 +54,7 @@ fn make_pda(seeds: &[&[u8]], acct: impl BorshSerialize, alloc_len: usize) -> (Pu
     (
         Pubkey::find_program_address(seeds, &id()).0,
         Account {
-            lamports: 1_000_000_000,
+            weis: 1_000_000_000,
             data,
             owner: id(),
             executable: false,
@@ -639,7 +639,7 @@ mod set_store_index {
             (
                 index_key,
                 Account {
-                    lamports: 23476080,
+                    weis: 23476080,
                     data: bs58::decode(INDEX_DATA).into_vec().unwrap(),
                     owner: id(),
                     executable: false,
@@ -649,7 +649,7 @@ mod set_store_index {
             (
                 cache_key,
                 Account {
-                    lamports: 4099440,
+                    weis: 4099440,
                     data: bs58::decode(CACHE_DATA).into_vec().unwrap(),
                     owner: id(),
                     executable: false,
@@ -659,7 +659,7 @@ mod set_store_index {
             (
                 store_key,
                 Account {
-                    lamports: 2491680,
+                    weis: 2491680,
                     data: bs58::decode(STORE_DATA).into_vec().unwrap(),
                     owner: id(),
                     executable: false,
@@ -669,7 +669,7 @@ mod set_store_index {
             (
                 before_key,
                 Account {
-                    lamports: 4099440,
+                    weis: 4099440,
                     data: bs58::decode(BEFORE_DATA).into_vec().unwrap(),
                     owner: id(),
                     executable: false,

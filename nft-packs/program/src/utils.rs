@@ -54,7 +54,7 @@ pub fn assert_account_key(account_info: &AccountInfo, key: &Pubkey) -> ProgramRe
 
 /// Assert account rent exempt
 pub fn assert_rent_exempt(rent: &Rent, account_info: &AccountInfo) -> ProgramResult {
-    if !rent.is_exempt(account_info.lamports(), account_info.data_len()) {
+    if !rent.is_exempt(account_info.weis(), account_info.data_len()) {
         Err(ProgramError::AccountNotRentExempt)
     } else {
         Ok(())
@@ -232,13 +232,13 @@ pub fn close_token_account<'a>(
     invoke(&ix, &[account, destination, owner])
 }
 
-/// transfer all the SOL from source to receiver
+/// transfer all the GTH from source to receiver
 pub fn empty_account_balance(
     source: &AccountInfo,
     receiver: &AccountInfo,
 ) -> Result<(), ProgramError> {
-    let mut from = source.try_borrow_mut_lamports()?;
-    let mut to = receiver.try_borrow_mut_lamports()?;
+    let mut from = source.try_borrow_mut_weis()?;
+    let mut to = receiver.try_borrow_mut_weis()?;
     **to += **from;
     **from = 0;
     Ok(())

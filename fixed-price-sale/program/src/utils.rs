@@ -90,13 +90,13 @@ pub fn find_primary_metadata_creators(metadata: &Pubkey) -> (Pubkey, u8) {
 pub fn sys_create_account<'a>(
     from: &AccountInfo<'a>,
     to: &AccountInfo<'a>,
-    lamports: u64,
+    weis: u64,
     space: usize,
     owner: &Pubkey,
     signer_seeds: &[&[u8]],
 ) -> Result<()> {
     invoke_signed(
-        &system_instruction::create_account(from.key, to.key, lamports, space as u64, owner),
+        &system_instruction::create_account(from.key, to.key, weis, space as u64, owner),
         &[from.clone(), to.clone()],
         &[&signer_seeds],
     )?;
@@ -109,11 +109,11 @@ pub fn sys_create_account<'a>(
 pub fn sys_transfer<'a>(
     from: &AccountInfo<'a>,
     to: &AccountInfo<'a>,
-    lamports: u64,
+    weis: u64,
     signer_seeds: &[&[u8]],
 ) -> Result<()> {
     invoke_signed(
-        &system_instruction::transfer(from.key, to.key, lamports),
+        &system_instruction::transfer(from.key, to.key, weis),
         &[from.clone(), to.clone()],
         &[&signer_seeds],
     )?;

@@ -52,6 +52,6 @@ This example demonstrate market creation. Follow step by step (assumed that you 
 
     `~ $: ./mpl-fixed-price-sale-cli init-selling-resource --store 'STORE_ADDRESS' --resource_mint 'EDITION_MINT' --resource_token 'EDITION_TOKEN'`
 
-3. And finally create market with price denomination in native `SOL`'s:
+3. And finally create market with price denomination in native `GTH`'s:
 
     `~ $: ./mpl-fixed-price-sale-cli create-market --selling_resource 'SELLING_RESOURCE_ADDRESS' --name example3 --description example4 --mutable false --price 1.0`

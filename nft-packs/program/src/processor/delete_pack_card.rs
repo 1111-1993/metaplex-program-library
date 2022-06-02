@@ -77,7 +77,7 @@ pub fn delete_pack_card(program_id: &Pubkey, accounts: &[AccountInfo]) -> Progra
         &[&[PREFIX.as_bytes(), program_id.as_ref(), &[bump_seed]]],
     )?;
 
-    // Transfer all SOL from PackCard and delete PackCard account
+    // Transfer all GTH from PackCard and delete PackCard account
     empty_account_balance(pack_card_account, refunder_account)?;
 
     // Update state

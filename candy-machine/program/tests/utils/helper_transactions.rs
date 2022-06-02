@@ -49,11 +49,11 @@ pub async fn initialize_candy_machine(
     };
 
     let rent = context.banks_client.get_rent().await?;
-    let lamports = rent.minimum_balance(candy_account_size);
+    let weis = rent.minimum_balance(candy_account_size);
     let create_ix = system_instruction::create_account(
         &payer.pubkey(),
         &candy_account.pubkey(),
-        lamports,
+        weis,
         candy_account_size as u64,
         &mpl_candy_machine::id(),
     );

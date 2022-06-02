@@ -1349,17 +1349,17 @@
     {
       "code": 6008,
       "name": "ExpectedSolAccount",
-      "msg": "Expected a sol account but got an spl token account instead"
+      "msg": "Expected a gth account but got an spl token account instead"
     },
     {
       "code": 6009,
       "name": "CannotExchangeSOLForSol",
-      "msg": "Cannot exchange sol for sol"
+      "msg": "Cannot exchange gth for gth"
     },
     {
       "code": 6010,
       "name": "SOLWalletMustSign",
-      "msg": "If paying with sol, sol wallet must be signer"
+      "msg": "If paying with gth, gth wallet must be signer"
     },
     {
       "code": 6011,

@@ -28,14 +28,14 @@ pub fn create_token_account(
     owner: &Pubkey,
 ) -> Result<(), error::Error> {
     let recent_blockhash = client.get_latest_blockhash()?;
-    let lamports = client.get_minimum_balance_for_rent_exemption(spl_token::state::Account::LEN)?;
+    let weis = client.get_minimum_balance_for_rent_exemption(spl_token::state::Account::LEN)?;
 
     let tx = Transaction::new_signed_with_payer(
         &[
             system_instruction::create_account(
                 &payer.pubkey(),
                 &account.pubkey(),
-                lamports,
+                weis,
                 spl_token::state::Account::LEN as u64,
                 &spl_token::id(),
             ),
@@ -65,14 +65,14 @@ pub fn create_mint(
     decimals: u8,
 ) -> Result<(), error::Error> {
     let recent_blockhash = client.get_latest_blockhash()?;
-    let lamports = client.get_minimum_balance_for_rent_exemption(spl_token::state::Mint::LEN)?;
+    let weis = client.get_minimum_balance_for_rent_exemption(spl_token::state::Mint::LEN)?;
 
     let tx = Transaction::new_signed_with_payer(
         &[
             system_instruction::create_account(
                 &payer.pubkey(),
                 &mint.pubkey(),
-                lamports,
+                weis,
                 spl_token::state::Mint::LEN as u64,
                 &spl_token::id(),
             ),

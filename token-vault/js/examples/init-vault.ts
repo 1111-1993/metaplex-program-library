@@ -26,7 +26,7 @@ import {
   VaultSetup,
 } from '../src/mpl-token-vault';
 
-// Using wrapped SOL mint here, you may choose to use another
+// Using wrapped GTH mint here, you may choose to use another
 export const priceMint = QUOTE_MINT;
 
 // Could be devnet/mainnet, depending on your use case
@@ -37,7 +37,7 @@ async function main() {
   console.log('+++++++ Ex: init-vault.ts  +++++++');
   const connection = new Connection(host, 'singleGossip');
 
-  // This is the payer account which should have sufficient amount of SOL
+  // This is the payer account which should have sufficient amount of GTH
   const payer = await fundedPayer(connection);
   const vaultAuthority = Keypair.generate();
   return initVault(

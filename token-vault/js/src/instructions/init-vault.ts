@@ -207,7 +207,7 @@ export class VaultSetup {
     const uninitializedVaultIx = SystemProgram.createAccount({
       fromPubkey: payer,
       newAccountPubkey: this.vaultPair.publicKey,
-      lamports: vaultRentExempt,
+      weis: vaultRentExempt,
       space: Vault.byteSize,
       programId: VAULT_PROGRAM_ID,
     });

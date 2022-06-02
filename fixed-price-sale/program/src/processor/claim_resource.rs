@@ -34,7 +34,7 @@ impl<'info> ClaimResource<'info> {
 
         let treasury_holder_amount = if is_native {
             treasury_holder
-                .lamports()
+                .weis()
                 .checked_sub(MINIMUM_BALANCE_FOR_SYSTEM_ACCS)
                 .ok_or(ErrorCode::MathOverflow)?
         } else {

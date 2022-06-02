@@ -24,7 +24,7 @@ async fn withdraw_success() {
     let owner_pubkey = &test_metadata.token.pubkey();
 
     let airdrop_amount = 2_000_000_000;
-    // Airdrop owner with some SOL.
+    // Airdrop owner with some GTH.
     airdrop(&mut context, owner_pubkey, airdrop_amount)
         .await
         .unwrap();
@@ -75,7 +75,7 @@ async fn withdraw_success() {
         .await
         .expect("Error Getting Escrow")
         .expect("Trade State Escrow")
-        .lamports;
+        .weis;
 
     let (_, withdraw_tx) = withdraw(
         &mut context,
@@ -98,7 +98,7 @@ async fn withdraw_success() {
         .await
         .expect("Error Getting Escrow")
         .expect("Trade State Escrow")
-        .lamports;
+        .weis;
 
     assert_eq!(sale_price + rent_exempt_min, escrow_balance_before_withdraw);
     assert_eq!(rent_exempt_min, escrow_balance_after_withdraw);
@@ -118,7 +118,7 @@ async fn auctioneer_withdraw_success() {
     let owner_pubkey = &test_metadata.token.pubkey();
 
     let airdrop_amount = 10_000_000_000;
-    // Airdrop owner with some SOL.
+    // Airdrop owner with some GTH.
     airdrop(&mut context, owner_pubkey, airdrop_amount)
         .await
         .unwrap();
@@ -185,7 +185,7 @@ async fn auctioneer_withdraw_success() {
         .await
         .expect("Error Getting Escrow")
         .expect("Trade State Escrow")
-        .lamports;
+        .weis;
 
     let (_, withdraw_tx) = auctioneer_withdraw(
         &mut context,
@@ -209,7 +209,7 @@ async fn auctioneer_withdraw_success() {
         .await
         .expect("Error Getting Escrow")
         .expect("Trade State Escrow")
-        .lamports;
+        .weis;
 
     assert_eq!(sale_price + rent_exempt_min, escrow_balance_before_withdraw);
     assert_eq!(rent_exempt_min, escrow_balance_after_withdraw);
@@ -229,7 +229,7 @@ async fn auctioneer_withdraw_missing_scope_fails() {
     let test_metadata = Metadata::new();
     let owner_pubkey = &test_metadata.token.pubkey();
 
-    // Airdrop owner with some SOL.
+    // Airdrop owner with some GTH.
     airdrop(&mut context, owner_pubkey, 10_000_000_000)
         .await
         .unwrap();
@@ -322,7 +322,7 @@ async fn auctioneer_withdraw_no_delegate_fails() {
     let test_metadata = Metadata::new();
     let owner_pubkey = &test_metadata.token.pubkey();
 
-    // Airdrop owner with some SOL.
+    // Airdrop owner with some GTH.
     airdrop(&mut context, owner_pubkey, 10_000_000_000)
         .await
         .unwrap();

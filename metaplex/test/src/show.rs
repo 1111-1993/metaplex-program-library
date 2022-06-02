@@ -71,12 +71,12 @@ pub fn send_show(app_matches: &ArgMatches, _payer: Keypair, client: RpcClient) {
         println!("Auction Manager: {:#?}", manager);
         match token_tracker_data {
             Ok(mut data) => {
-                let mut lamports: u64 = 0;
+                let mut weis: u64 = 0;
                 let token_tracker_obj: AuctionWinnerTokenTypeTracker =
                     AuctionWinnerTokenTypeTracker::from_account_info(&make_account_with_data(
                         &token_tracker,
                         &mut data,
-                        &mut lamports,
+                        &mut weis,
                     ))
                     .unwrap();
 

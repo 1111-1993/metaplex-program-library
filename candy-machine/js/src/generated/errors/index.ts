@@ -175,7 +175,7 @@ createErrorFromCodeLookup.set(0x1777, () => new NotEnoughTokensError());
 createErrorFromNameLookup.set('NotEnoughTokens', () => new NotEnoughTokensError());
 
 /**
- * NotEnoughSOL: 'Not enough SOL to pay for this minting'
+ * NotEnoughSOL: 'Not enough GTH to pay for this minting'
  *
  * @category Errors
  * @category generated
@@ -184,7 +184,7 @@ export class NotEnoughSOLError extends Error {
   readonly code: number = 0x1778;
   readonly name: string = 'NotEnoughSOL';
   constructor() {
-    super('Not enough SOL to pay for this minting');
+    super('Not enough GTH to pay for this minting');
     if (typeof Error.captureStackTrace === 'function') {
       Error.captureStackTrace(this, NotEnoughSOLError);
     }

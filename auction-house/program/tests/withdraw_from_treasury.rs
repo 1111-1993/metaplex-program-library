@@ -6,7 +6,7 @@
 //     use super::utils::{
 //         clone_keypair,
 //         setup_functions::{setup_auction_house, setup_client, setup_program},
-//         transfer_lamports,
+//         transfer_weis,
 //     };
 //     use anchor_client::{
 //         solana_sdk::{signature::Keypair, signer::Signer, system_program},
@@ -46,7 +46,7 @@
 
 //         let amount: u64 = 500_000_000;
 
-//         transfer_lamports(
+//         transfer_weis(
 //             &program.rpc(),
 //             &payer_wallet,
 //             &auction_house_account.auction_house_treasury,

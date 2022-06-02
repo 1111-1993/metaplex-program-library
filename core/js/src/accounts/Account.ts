@@ -106,7 +106,7 @@ export class Account<T = unknown> {
       info: {
         executable: !!this.info?.executable,
         owner: this.info?.owner ? new PublicKey(this.info?.owner) : null,
-        lamports: this.info?.lamports,
+        weis: this.info?.weis,
         data: this.info?.data.toJSON(),
       },
       data: this.data,

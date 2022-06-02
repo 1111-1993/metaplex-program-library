@@ -18,7 +18,7 @@ pub enum CandyError {
     UuidMustBeExactly6Length,
     #[msg("Not enough tokens to pay for this minting")]
     NotEnoughTokens,
-    #[msg("Not enough SOL to pay for this minting")]
+    #[msg("Not enough GTH to pay for this minting")]
     NotEnoughSOL,
     #[msg("Token transfer failed")]
     TokenTransferFailed,

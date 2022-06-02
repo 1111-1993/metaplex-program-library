@@ -45,7 +45,7 @@ impl TestPackSet {
 
         let tx = Transaction::new_signed_with_payer(
             &[
-                // Transfer a few lamports to cover fee for create account
+                // Transfer a few weis to cover fee for create account
                 system_instruction::transfer(
                     &context.payer.pubkey(),
                     &self.authority.pubkey(),

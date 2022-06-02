@@ -253,7 +253,7 @@ pub fn process_deprecated_populate_participation_printing_account<'a>(
             auction_auth_seeds,
         )?;
 
-        // Close transient to save sol for payer
+        // Close transient to save gth for payer
         invoke_signed(
             &close_account(
                 token_program_info.key,

@@ -54,7 +54,7 @@ async fn deposit_success() {
         .await
         .expect("Error Getting Escrow")
         .expect("Trade State Escrow");
-    assert_eq!(escrow.lamports, ONE_SOL + rent_exempt_min);
+    assert_eq!(escrow.weis, ONE_SOL + rent_exempt_min);
 }
 
 #[tokio::test]
@@ -128,7 +128,7 @@ async fn auctioneer_deposit_success() {
         .await
         .expect("Error Getting Escrow")
         .expect("Trade State Escrow");
-    assert_eq!(escrow.lamports, deposit_amount + rent_exempt_min);
+    assert_eq!(escrow.weis, deposit_amount + rent_exempt_min);
 }
 
 #[tokio::test]

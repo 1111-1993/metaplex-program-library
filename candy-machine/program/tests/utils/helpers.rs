@@ -1,4 +1,4 @@
-use solana_program::{native_token::LAMPORTS_PER_SOL, pubkey::Pubkey};
+use solana_program::{native_token::WEIS_PER_GTH, pubkey::Pubkey};
 
 use mpl_candy_machine::{constants::PREFIX as CANDY_PREFIX, ConfigLine};
 
@@ -25,6 +25,6 @@ pub fn find_collection_pda(candy_machine_key: &Pubkey) -> (Pubkey, u8) {
     )
 }
 
-pub fn sol(amount: f64) -> u64 {
-    (amount * LAMPORTS_PER_SOL as f64) as u64
+pub fn gth(amount: f64) -> u64 {
+    (amount * WEIS_PER_GTH as f64) as u64
 }

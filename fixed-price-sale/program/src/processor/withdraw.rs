@@ -180,7 +180,7 @@ impl<'info> Withdraw<'info> {
             }
 
             // Check, that provided destination is exists
-            if destination.lamports() == 0 && destination.data_is_empty() {
+            if destination.weis() == 0 && destination.data_is_empty() {
                 let cpi_program = associated_token_program.to_account_info();
                 let cpi_accounts = associated_token::Create {
                     payer: payer.to_account_info(),

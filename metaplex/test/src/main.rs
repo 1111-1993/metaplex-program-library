@@ -11,13 +11,13 @@ use {
 pub fn make_account_with_data<'a>(
     key: &'a Pubkey,
     account: &'a mut Account,
-    lamports: &'a mut u64,
+    weis: &'a mut u64,
 ) -> AccountInfo<'a> {
     AccountInfo::new(
         key,
         false,
         false,
-        lamports,
+        weis,
         &mut account.data,
         &account.owner,
         false,

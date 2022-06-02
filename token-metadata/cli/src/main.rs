@@ -148,12 +148,12 @@ fn mint_coins(app_matches: &ArgMatches, payer: Keypair, client: RpcClient) {
 fn show_reservation_list(app_matches: &ArgMatches, _payer: Keypair, client: RpcClient) {
     let key = pubkey_of(app_matches, "key").unwrap();
     let mut res_data = client.get_account(&key).unwrap();
-    let mut lamports = 0;
+    let mut weis = 0;
     let account_info = AccountInfo::new(
         &key,
         false,
         false,
-        &mut lamports,
+        &mut weis,
         &mut res_data.data,
         &res_data.owner,
         false,

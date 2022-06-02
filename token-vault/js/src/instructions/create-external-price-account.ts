@@ -33,7 +33,7 @@ export async function createExternalPriceAccount(
   const createExternalPriceAccountIx = SystemProgram.createAccount({
     fromPubkey: payer,
     newAccountPubkey: externalPriceAccountPair.publicKey,
-    lamports: rentExempt,
+    weis: rentExempt,
     space: ExternalPriceAccount.byteSize, // 1 + 8 + 32 + 1
     programId: new PublicKey(VAULT_PROGRAM_ADDRESS),
   });

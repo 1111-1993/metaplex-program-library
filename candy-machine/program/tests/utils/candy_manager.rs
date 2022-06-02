@@ -26,7 +26,7 @@ use crate::{
     },
     utils::{
         add_all_config_lines,
-        helpers::{find_candy_creator, find_collection_pda, sol},
+        helpers::{find_candy_creator, find_collection_pda, gth},
         initialize_candy_machine, mint_nft, remove_collection, set_collection,
         update_candy_machine,
     },
@@ -353,7 +353,7 @@ impl CandyManager {
         let authority = Keypair::new();
         let minter = Keypair::new();
 
-        airdrop(context, &authority.pubkey(), sol(10.0))
+        airdrop(context, &authority.pubkey(), gth(10.0))
             .await
             .unwrap();
 
@@ -596,7 +596,7 @@ impl CandyManager {
                 assert_eq!(
                     start_balance - end_balance,
                     sol_fees,
-                    "Sol balance changed in a different way than it should have!"
+                    "Gth balance changed in a different way than it should have!"
                 );
             } else {
                 assert_eq!(
@@ -607,7 +607,7 @@ impl CandyManager {
                 assert_eq!(
                     start_balance - end_balance,
                     sol_fees + change,
-                    "Sol balance changed in a different way than it should have!"
+                    "Gth balance changed in a different way than it should have!"
                 );
             }
         }

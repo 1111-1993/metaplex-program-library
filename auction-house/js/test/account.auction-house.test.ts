@@ -38,7 +38,7 @@ test('account auction-house: round trip serilization', async (t) => {
     executable: false,
     data,
     owner: creator,
-    lamports: 1000,
+    weis: 1000,
   };
 
   const actual = AuctionHouse.fromAccountInfo(info)[0];

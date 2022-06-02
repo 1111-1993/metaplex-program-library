@@ -137,7 +137,7 @@ pub struct AuctioneerCancel<'info> {
     pub token_program: Program<'info, Token>,
 }
 
-// Cancel a bid or ask by revoking the token delegate, transferring all lamports from the trade state account to the fee payer, and setting the trade state account data to zero so it can be garbage collected.
+// Cancel a bid or ask by revoking the token delegate, transferring all weis from the trade state account to the fee payer, and setting the trade state account data to zero so it can be garbage collected.
 pub fn cancel<'info>(
     ctx: Context<'_, '_, '_, 'info, Cancel<'info>>,
     buyer_price: u64,
@@ -242,11 +242,11 @@ fn cancel_logic<'info>(
         )?;
     }
 
-    let curr_lamp = trade_state.lamports();
-    **trade_state.lamports.borrow_mut() = 0;
+    let curr_lamp = trade_state.weis();
+    **trade_state.weis.borrow_mut() = 0;
 
-    **fee_payer.lamports.borrow_mut() = fee_payer
-        .lamports()
+    **fee_payer.weis.borrow_mut() = fee_payer
+        .weis()
         .checked_add(curr_lamp)
         .ok_or(AuctionHouseError::NumericalOverflow)?;
     sol_memset(*trade_state.try_borrow_mut_data()?, 0, TRADE_STATE_SIZE);

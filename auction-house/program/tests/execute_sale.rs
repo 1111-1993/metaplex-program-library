@@ -175,8 +175,8 @@ async fn execute_sale_existing_token_account_success() {
     )
     .unwrap();
     let fee_minus: u64 = 100_000_000 - ((ah.seller_fee_basis_points as u64 * 100_000_000) / 10000);
-    assert_eq!(seller_before.lamports + fee_minus, seller_after.lamports);
-    assert!(seller_before.lamports < seller_after.lamports);
+    assert_eq!(seller_before.weis + fee_minus, seller_after.weis);
+    assert!(seller_before.weis < seller_after.weis);
     assert_eq!(buyer_token_after.amount, 1);
 }
 
@@ -459,8 +459,8 @@ async fn execute_sale_success() {
     )
     .unwrap();
     let fee_minus: u64 = 100_000_000 - ((ah.seller_fee_basis_points as u64 * 100_000_000) / 10000);
-    assert_eq!(seller_before.lamports + fee_minus, seller_after.lamports);
-    assert!(seller_before.lamports < seller_after.lamports);
+    assert_eq!(seller_before.weis + fee_minus, seller_after.weis);
+    assert!(seller_before.weis < seller_after.weis);
     assert_eq!(buyer_token_after.amount, 1);
 }
 
@@ -635,8 +635,8 @@ async fn auctioneer_execute_sale_success() {
     )
     .unwrap();
     let fee_minus: u64 = 100_000_000 - ((ah.seller_fee_basis_points as u64 * 100_000_000) / 10000);
-    assert_eq!(seller_before.lamports + fee_minus, seller_after.lamports);
-    assert!(seller_before.lamports < seller_after.lamports);
+    assert_eq!(seller_before.weis + fee_minus, seller_after.weis);
+    assert!(seller_before.weis < seller_after.weis);
     assert_eq!(buyer_token_after.amount, 1);
 }
 
@@ -1037,8 +1037,8 @@ async fn execute_public_sale_success() {
     )
     .unwrap();
 
-    assert_eq!(seller_before.lamports + fee_minus, seller_after.lamports);
-    assert!(seller_before.lamports < seller_after.lamports);
+    assert_eq!(seller_before.weis + fee_minus, seller_after.weis);
+    assert!(seller_before.weis < seller_after.weis);
     assert_eq!(buyer_token_after.amount, 1);
     let new_seller = buyer;
     let public_bidder_token_account =
@@ -1107,7 +1107,7 @@ async fn execute_public_sale_success() {
             .as_slice(),
     )
     .unwrap();
-    assert!(new_seller_before.lamports < new_seller_after.lamports);
+    assert!(new_seller_before.weis < new_seller_after.weis);
     assert_eq!(public_bidder_token_after.amount, 1);
 
     let timestamp = context
@@ -1328,8 +1328,8 @@ async fn auctioneer_execute_public_sale_success() {
     )
     .unwrap();
 
-    assert_eq!(seller_before.lamports + fee_minus, seller_after.lamports);
-    assert!(seller_before.lamports < seller_after.lamports);
+    assert_eq!(seller_before.weis + fee_minus, seller_after.weis);
+    assert!(seller_before.weis < seller_after.weis);
     assert_eq!(buyer_token_after.amount, 1);
     let new_seller = buyer;
     let public_bidder_token_account =
@@ -1399,7 +1399,7 @@ async fn auctioneer_execute_public_sale_success() {
             .as_slice(),
     )
     .unwrap();
-    assert!(new_seller_before.lamports < new_seller_after.lamports);
+    assert!(new_seller_before.weis < new_seller_after.weis);
     assert_eq!(public_bidder_token_after.amount, 1);
 
     let timestamp = context

@@ -28,7 +28,7 @@ export const createTokenAccount = async ({
     SystemProgram.createAccount({
       fromPubkey: payer,
       newAccountPubkey: tokenAccount.publicKey,
-      lamports: accountRentExempt,
+      weis: accountRentExempt,
       space: AccountLayout.span,
       programId: new PublicKey(TOKEN_PROGRAM_ID),
     }),

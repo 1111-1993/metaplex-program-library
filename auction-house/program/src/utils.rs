@@ -496,13 +496,13 @@ pub fn create_or_allocate_account_raw<'a>(
     new_acct_seeds: &[&[u8]],
 ) -> Result<()> {
     let rent = &Rent::from_account_info(rent_sysvar_info)?;
-    let required_lamports = rent
+    let required_weis = rent
         .minimum_balance(size)
         .max(1)
-        .saturating_sub(new_account_info.lamports());
+        .saturating_sub(new_account_info.weis());
 
-    if required_lamports > 0 {
-        msg!("Transfer {} lamports to the new account", required_lamports);
+    if required_weis > 0 {
+        msg!("Transfer {} weis to the new account", required_weis);
 
         let as_arr = [signer_seeds];
         let seeds: &[&[&[u8]]] = if !signer_seeds.is_empty() {
@@ -512,7 +512,7 @@ pub fn create_or_allocate_account_raw<'a>(
         };
 
         invoke_signed(
-            &system_instruction::transfer(payer_info.key, new_account_info.key, required_lamports),
+            &system_instruction::transfer(payer_info.key, new_account_info.key, required_weis),
             &[
                 payer_info.clone(),
                 new_account_info.clone(),
@@ -609,13 +609,13 @@ pub fn assert_valid_trade_state(
 
 pub fn rent_checked_sub(escrow_account: AccountInfo, diff: u64) -> Result<u64> {
     let rent_minimum: u64 = (Rent::get()?).minimum_balance(escrow_account.data_len());
-    let account_lamports: u64 = escrow_account
-        .lamports()
+    let account_weis: u64 = escrow_account
+        .weis()
         .checked_sub(diff)
         .ok_or(AuctionHouseError::NumericalOverflow)?;
 
-    if account_lamports < rent_minimum {
-        Ok(escrow_account.lamports() - rent_minimum)
+    if account_weis < rent_minimum {
+        Ok(escrow_account.weis() - rent_minimum)
     } else {
         Ok(diff)
     }
@@ -623,13 +623,13 @@ pub fn rent_checked_sub(escrow_account: AccountInfo, diff: u64) -> Result<u64> {
 
 pub fn rent_checked_add(escrow_account: AccountInfo, diff: u64) -> Result<u64> {
     let rent_minimum: u64 = (Rent::get()?).minimum_balance(escrow_account.data_len());
-    let account_lamports: u64 = escrow_account
-        .lamports()
+    let account_weis: u64 = escrow_account
+        .weis()
         .checked_add(diff)
         .ok_or(AuctionHouseError::NumericalOverflow)?;
 
-    if account_lamports < rent_minimum {
-        Ok(rent_minimum - account_lamports)
+    if account_weis < rent_minimum {
+        Ok(rent_minimum - account_weis)
     } else {
         Ok(diff)
     }

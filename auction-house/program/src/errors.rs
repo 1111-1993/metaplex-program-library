@@ -35,15 +35,15 @@ pub enum AuctionHouseError {
     NumericalOverflow,
 
     // 6008
-    #[msg("Expected a sol account but got an spl token account instead")]
+    #[msg("Expected a gth account but got an spl token account instead")]
     ExpectedSolAccount,
 
     // 6009
-    #[msg("Cannot exchange sol for sol")]
+    #[msg("Cannot exchange gth for gth")]
     CannotExchangeSOLForSol,
 
     // 6010
-    #[msg("If paying with sol, sol wallet must be signer")]
+    #[msg("If paying with gth, gth wallet must be signer")]
     SOLWalletMustSign,
 
     // 6011

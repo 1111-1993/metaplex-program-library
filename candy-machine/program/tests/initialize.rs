@@ -7,7 +7,7 @@ use mpl_candy_machine::{CandyMachineData, WhitelistMintMode::BurnEveryTime};
 
 use crate::{
     core::helpers::airdrop,
-    utils::{auto_config, candy_machine_program_test, helpers::sol, CandyManager, WhitelistConfig},
+    utils::{auto_config, candy_machine_program_test, helpers::gth, CandyManager, WhitelistConfig},
 };
 
 mod core;
@@ -26,7 +26,7 @@ async fn init_default_success() {
     )
     .await;
 
-    airdrop(context, &candy_manager.minter.pubkey(), sol(2.0))
+    airdrop(context, &candy_manager.minter.pubkey(), gth(2.0))
         .await
         .unwrap();
     let candy_data = auto_config(&candy_manager, None, true, true, None, None);

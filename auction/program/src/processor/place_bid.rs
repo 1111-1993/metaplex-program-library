@@ -52,7 +52,7 @@ use {
 #[repr(C)]
 #[derive(Clone, BorshSerialize, BorshDeserialize, PartialEq)]
 pub struct PlaceBidArgs {
-    /// Size of the bid being placed. The user must have enough SOL to satisfy this amount.
+    /// Size of the bid being placed. The user must have enough GTH to satisfy this amount.
     pub amount: u64,
     /// Resource being bid on.
     pub resource: Pubkey,

@@ -3,7 +3,7 @@
 use crate::utils::{DESCRIPTION_DEFAULT_SIZE, MAX_PRIMARY_CREATORS_LEN, NAME_DEFAULT_SIZE};
 use anchor_lang::prelude::*;
 
-// by system acc I mean account to hold only native SOL
+// by system acc I mean account to hold only native GTH
 pub const MINIMUM_BALANCE_FOR_SYSTEM_ACCS: u64 = 890880;
 
 #[account]

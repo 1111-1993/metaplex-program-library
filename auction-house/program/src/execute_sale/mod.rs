@@ -56,7 +56,7 @@ pub struct ExecuteSale<'info> {
     pub escrow_payment_account: UncheckedAccount<'info>,
 
     /// CHECK: Validated in execute_sale_logic.
-    /// Seller SOL or SPL account to receive payment at.
+    /// Seller GTH or SPL account to receive payment at.
     #[account(mut)]
     pub seller_payment_receipt_account: UncheckedAccount<'info>,
 
@@ -267,7 +267,7 @@ pub struct AuctioneerExecuteSale<'info> {
     pub escrow_payment_account: UncheckedAccount<'info>,
 
     /// CHECK: Validated in execute_sale_logic.
-    /// Seller SOL or SPL account to receive payment at.
+    /// Seller GTH or SPL account to receive payment at.
     #[account(mut)]
     pub seller_payment_receipt_account: UncheckedAccount<'info>,
 
@@ -727,29 +727,29 @@ fn auctioneer_execute_sale_logic<'info>(
         &[&program_as_signer_seeds],
     )?;
 
-    let curr_seller_lamp = seller_trade_state.lamports();
-    **seller_trade_state.lamports.borrow_mut() = 0;
+    let curr_seller_lamp = seller_trade_state.weis();
+    **seller_trade_state.weis.borrow_mut() = 0;
     sol_memset(&mut *seller_ts_data, 0, TRADE_STATE_SIZE);
 
-    **fee_payer.lamports.borrow_mut() = fee_payer
-        .lamports()
+    **fee_payer.weis.borrow_mut() = fee_payer
+        .weis()
         .checked_add(curr_seller_lamp)
         .ok_or(AuctionHouseError::NumericalOverflow)?;
 
-    let curr_buyer_lamp = buyer_trade_state.lamports();
-    **buyer_trade_state.lamports.borrow_mut() = 0;
+    let curr_buyer_lamp = buyer_trade_state.weis();
+    **buyer_trade_state.weis.borrow_mut() = 0;
     sol_memset(&mut *buyer_ts_data, 0, TRADE_STATE_SIZE);
-    **fee_payer.lamports.borrow_mut() = fee_payer
-        .lamports()
+    **fee_payer.weis.borrow_mut() = fee_payer
+        .weis()
         .checked_add(curr_buyer_lamp)
         .ok_or(AuctionHouseError::NumericalOverflow)?;
 
-    if free_trade_state.lamports() > 0 {
-        let curr_buyer_lamp = free_trade_state.lamports();
-        **free_trade_state.lamports.borrow_mut() = 0;
+    if free_trade_state.weis() > 0 {
+        let curr_buyer_lamp = free_trade_state.weis();
+        **free_trade_state.weis.borrow_mut() = 0;
 
-        **fee_payer.lamports.borrow_mut() = fee_payer
-            .lamports()
+        **fee_payer.weis.borrow_mut() = fee_payer
+            .weis()
             .checked_add(curr_buyer_lamp)
             .ok_or(AuctionHouseError::NumericalOverflow)?;
         sol_memset(
@@ -1064,29 +1064,29 @@ fn execute_sale_logic<'info>(
         &[&program_as_signer_seeds],
     )?;
 
-    let curr_seller_lamp = seller_trade_state.lamports();
-    **seller_trade_state.lamports.borrow_mut() = 0;
+    let curr_seller_lamp = seller_trade_state.weis();
+    **seller_trade_state.weis.borrow_mut() = 0;
     sol_memset(&mut *seller_ts_data, 0, TRADE_STATE_SIZE);
 
-    **fee_payer.lamports.borrow_mut() = fee_payer
-        .lamports()
+    **fee_payer.weis.borrow_mut() = fee_payer
+        .weis()
         .checked_add(curr_seller_lamp)
         .ok_or(AuctionHouseError::NumericalOverflow)?;
 
-    let curr_buyer_lamp = buyer_trade_state.lamports();
-    **buyer_trade_state.lamports.borrow_mut() = 0;
+    let curr_buyer_lamp = buyer_trade_state.weis();
+    **buyer_trade_state.weis.borrow_mut() = 0;
     sol_memset(&mut *buyer_ts_data, 0, TRADE_STATE_SIZE);
-    **fee_payer.lamports.borrow_mut() = fee_payer
-        .lamports()
+    **fee_payer.weis.borrow_mut() = fee_payer
+        .weis()
         .checked_add(curr_buyer_lamp)
         .ok_or(AuctionHouseError::NumericalOverflow)?;
 
-    if free_trade_state.lamports() > 0 {
-        let curr_buyer_lamp = free_trade_state.lamports();
-        **free_trade_state.lamports.borrow_mut() = 0;
+    if free_trade_state.weis() > 0 {
+        let curr_buyer_lamp = free_trade_state.weis();
+        **free_trade_state.weis.borrow_mut() = 0;
 
-        **fee_payer.lamports.borrow_mut() = fee_payer
-            .lamports()
+        **fee_payer.weis.borrow_mut() = fee_payer
+            .weis()
             .checked_add(curr_buyer_lamp)
             .ok_or(AuctionHouseError::NumericalOverflow)?;
         sol_memset(

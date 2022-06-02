@@ -474,7 +474,7 @@ pub fn handle_mint_nft<'info>(
             amount: price,
         })?;
     } else {
-        if ctx.accounts.payer.lamports() < price {
+        if ctx.accounts.payer.weis() < price {
             return err!(CandyError::NotEnoughSOL);
         }
 

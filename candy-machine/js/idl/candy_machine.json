@@ -734,7 +734,7 @@
     {
       "code": 6008,
       "name": "NotEnoughSOL",
-      "msg": "Not enough SOL to pay for this minting"
+      "msg": "Not enough GTH to pay for this minting"
     },
     {
       "code": 6009,

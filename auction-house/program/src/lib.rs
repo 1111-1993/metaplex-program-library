@@ -309,7 +309,7 @@ pub mod auction_house {
         Ok(())
     }
 
-    /// Create a private buy bid by creating a `buyer_trade_state` account and an `escrow_payment` account and funding the escrow with the necessary SOL or SPL token amount.
+    /// Create a private buy bid by creating a `buyer_trade_state` account and an `escrow_payment` account and funding the escrow with the necessary GTH or SPL token amount.
     pub fn buy<'info>(
         ctx: Context<'_, '_, '_, 'info, Buy<'info>>,
         trade_state_bump: u8,
@@ -342,7 +342,7 @@ pub mod auction_house {
         )
     }
 
-    /// Create a public buy bid by creating a `public_buyer_trade_state` account and an `escrow_payment` account and funding the escrow with the necessary SOL or SPL token amount.
+    /// Create a public buy bid by creating a `public_buyer_trade_state` account and an `escrow_payment` account and funding the escrow with the necessary GTH or SPL token amount.
     pub fn public_buy<'info>(
         ctx: Context<'_, '_, '_, 'info, PublicBuy<'info>>,
         trade_state_bump: u8,
@@ -359,7 +359,7 @@ pub mod auction_house {
         )
     }
 
-    /// Create a public buy bid by creating a `public_buyer_trade_state` account and an `escrow_payment` account and funding the escrow with the necessary SOL or SPL token amount.
+    /// Create a public buy bid by creating a `public_buyer_trade_state` account and an `escrow_payment` account and funding the escrow with the necessary GTH or SPL token amount.
     pub fn auctioneer_public_buy<'info>(
         ctx: Context<'_, '_, '_, 'info, AuctioneerPublicBuy<'info>>,
         trade_state_bump: u8,
@@ -376,7 +376,7 @@ pub mod auction_house {
         )
     }
 
-    /// Cancel a bid or ask by revoking the token delegate, transferring all lamports from the trade state account to the fee payer, and setting the trade state account data to zero so it can be garbage collected.
+    /// Cancel a bid or ask by revoking the token delegate, transferring all weis from the trade state account to the fee payer, and setting the trade state account data to zero so it can be garbage collected.
     pub fn cancel<'info>(
         ctx: Context<'_, '_, '_, 'info, Cancel<'info>>,
         buyer_price: u64,
@@ -521,7 +521,7 @@ pub mod auction_house {
             &system_instruction::transfer(
                 &ctx.accounts.escrow_payment_account.key(),
                 &ctx.accounts.wallet.key(),
-                ctx.accounts.escrow_payment_account.lamports(),
+                ctx.accounts.escrow_payment_account.weis(),
             ),
             &[
                 ctx.accounts.escrow_payment_account.to_account_info(),
@@ -590,10 +590,10 @@ pub mod auction_house {
 #[derive(Accounts)]
 #[instruction(bump: u8, fee_payer_bump: u8, treasury_bump: u8)]
 pub struct CreateAuctionHouse<'info> {
-    /// Treasury mint account, either native SOL mint or a SPL token mint.
+    /// Treasury mint account, either native GTH mint or a SPL token mint.
     pub treasury_mint: Account<'info, Mint>,
 
-    /// Key paying SOL fees for setting up the Auction House.
+    /// Key paying GTH fees for setting up the Auction House.
     #[account(mut)]
     pub payer: Signer<'info>,
 
@@ -607,7 +607,7 @@ pub struct CreateAuctionHouse<'info> {
     pub fee_withdrawal_destination: UncheckedAccount<'info>,
 
     /// CHECK: User can use whatever they want for intialization.
-    /// SOL or SPL token account to receive Auction House fees. If treasury mint is native this will be the same as the `treasury_withdrawl_destination_owner`.
+    /// GTH or SPL token account to receive Auction House fees. If treasury mint is native this will be the same as the `treasury_withdrawl_destination_owner`.
     #[account(mut)]
     pub treasury_withdrawal_destination: UncheckedAccount<'info>,
 
@@ -638,10 +638,10 @@ pub struct CreateAuctionHouse<'info> {
 /// Accounts for the [`update_auction_house` handler](auction_house/fn.update_auction_house.html).
 #[derive(Accounts)]
 pub struct UpdateAuctionHouse<'info> {
-    /// Treasury mint account, either native SOL mint or a SPL token mint.
+    /// Treasury mint account, either native GTH mint or a SPL token mint.
     pub treasury_mint: Account<'info, Mint>,
 
-    /// Key paying SOL fees for setting up the Auction House.
+    /// Key paying GTH fees for setting up the Auction House.
     pub payer: Signer<'info>,
 
     /// Authority key for the Auction House.
@@ -657,7 +657,7 @@ pub struct UpdateAuctionHouse<'info> {
     pub fee_withdrawal_destination: UncheckedAccount<'info>,
 
     /// CHECK: User can use whatever they want for updating this.
-    /// SOL or SPL token account to receive Auction House fees. If treasury mint is native this will be the same as the `treasury_withdrawl_destination_owner`.
+    /// GTH or SPL token account to receive Auction House fees. If treasury mint is native this will be the same as the `treasury_withdrawl_destination_owner`.
     #[account(mut)]
     pub treasury_withdrawal_destination: UncheckedAccount<'info>,
 
@@ -678,13 +678,13 @@ pub struct UpdateAuctionHouse<'info> {
 /// Accounts for the [`withdraw_from_treasury` handler](auction_house/fn.withdraw_from_treasury.html).
 #[derive(Accounts)]
 pub struct WithdrawFromTreasury<'info> {
-    /// Treasury mint account, either native SOL mint or a SPL token mint.
+    /// Treasury mint account, either native GTH mint or a SPL token mint.
     pub treasury_mint: Account<'info, Mint>,
 
     /// Authority key for the Auction House.
     pub authority: Signer<'info>,
 
-    /// SOL or SPL token account to receive Auction House fees. If treasury mint is native this will be the same as the `treasury_withdrawl_destination_owner`.
+    /// GTH or SPL token account to receive Auction House fees. If treasury mint is native this will be the same as the `treasury_withdrawl_destination_owner`.
     /// CHECK: User can withdraw wherever they want as long as they sign as authority.
     #[account(mut)]
     pub treasury_withdrawal_destination: UncheckedAccount<'info>,

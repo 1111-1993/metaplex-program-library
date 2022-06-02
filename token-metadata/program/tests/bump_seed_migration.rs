@@ -63,7 +63,7 @@ mod bump_seed_migration {
             bump: 0,
         };
         let mut account = Account {
-            lamports: 1113600,
+            weis: 1113600,
             data: vec![],
             owner: mpl_token_metadata::id(),
             executable: false,

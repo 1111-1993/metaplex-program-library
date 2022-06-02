@@ -105,13 +105,13 @@ impl<'info> CreateMarket<'info> {
                 return Err(ProgramError::InvalidAccountData.into());
             }
         } else {
-            // for native SOL we use PDA as a treasury holder
-            // because of security reasons(only program can spend this SOL)
+            // for native GTH we use PDA as a treasury holder
+            // because of security reasons(only program can spend this GTH)
             if treasury_holder.key != owner.key {
                 return Err(ProgramError::InvalidAccountData.into());
             }
 
-            // we need fund treasury holder account such as it will hold some metadata with SOL balance
+            // we need fund treasury holder account such as it will hold some metadata with GTH balance
             invoke(
                 &system_instruction::transfer(
                     &selling_resource_owner.key(),

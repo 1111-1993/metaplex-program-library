@@ -47,11 +47,11 @@ export abstract class Program {
         pubkey: string;
       }>
     )
-      .map(({ account: { data, executable, lamports, owner }, pubkey }) => ({
+      .map(({ account: { data, executable, weis, owner }, pubkey }) => ({
         account: {
           data: Buffer.from(data[0], 'base64'),
           executable,
-          lamports,
+          weis,
           owner: new PublicKey(owner),
         } as AccountInfo<Buffer>,
         pubkey: new PublicKey(pubkey),
